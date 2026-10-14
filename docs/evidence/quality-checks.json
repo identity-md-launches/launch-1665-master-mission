@@ -1,0 +1,86 @@
+{
+  "results": [
+    {
+      "test": "Axe scan home",
+      "passed": true,
+      "detail": "0 violations"
+    },
+    {
+      "test": "Axe scan mint",
+      "passed": true,
+      "detail": "0 violations"
+    },
+    {
+      "test": "Axe scan pass",
+      "passed": true,
+      "detail": "0 violations"
+    },
+    {
+      "test": "Axe scan dashboard",
+      "passed": true,
+      "detail": "0 violations"
+    },
+    {
+      "test": "Axe scan staking",
+      "passed": true,
+      "detail": "0 violations"
+    },
+    {
+      "test": "Axe scan swap",
+      "passed": true,
+      "detail": "0 violations"
+    },
+    {
+      "test": "Axe scan burns",
+      "passed": true,
+      "detail": "0 violations"
+    },
+    {
+      "test": "Axe scan launchpad",
+      "passed": true,
+      "detail": "0 violations"
+    },
+    {
+      "test": "Axe scan community",
+      "passed": true,
+      "detail": "0 violations"
+    },
+    {
+      "test": "Axe scan verification",
+      "passed": true,
+      "detail": "0 violations"
+    },
+    {
+      "test": "Wallet modal traps keyboard focus",
+      "passed": true
+    },
+    {
+      "test": "Reduced motion stops decorative animations",
+      "passed": true
+    },
+    {
+      "test": "Home reflows at 320px with 200% root text size",
+      "passed": true
+    },
+    {
+      "test": "Preserved Genesis and Standard gallery, pagination and category filter",
+      "passed": true
+    },
+    {
+      "test": "Offline RPC fallback labels snapshot and keeps connect and authentic artwork usable",
+      "passed": true
+    },
+    {
+      "test": "WebKit main action, wallet dialog and mint gate",
+      "passed": true
+    },
+    {
+      "test": "WebKit secondary routes render without overflow or page errors",
+      "passed": true
+    }
+  ],
+  "violations": [],
+  "webkitErrors": [],
+  "recordedAt": "2026-10-14",
+  "authority": "Implementing worker checks only; not independent certification"
+}

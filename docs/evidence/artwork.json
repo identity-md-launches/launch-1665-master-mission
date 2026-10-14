@@ -1,0 +1,18 @@
+{
+  "originalURL": "https://gateway.pinata.cloud/ipfs/bafybeihfihwwpev4gkqjuqawgtptsv3ynzsokclo6odsolvoa65aqaac2u/genesis-01.png",
+  "originalPNGBytes": 2739752,
+  "originalPNGSHA256": "b35a60c9a4fb8227ca6dd4874dca5e9d3ef7948ac0ccdb7b770851e0ae11c406",
+  "localFormat": "lossless WebP",
+  "localBytes": 2052792,
+  "localSHA256": "64566095222ba9e1dfc28d80086bf2c84d8292e06fe261a3bc9f9e27dce89971",
+  "decodedRGBA_SHA256": "3cef01fd502735ccf7bada1805176f59916cfa49ed0d0e3f3747d279000048f7",
+  "decodedPixelsIdentical": true,
+  "conversion": "ffmpeg -i original.png -c:v libwebp -lossless 1 -compression_level 6 genesis-01.webp",
+  "previews": {
+    "sourceRepository": "identity-md-launches/launch-1481-bmc-illuminati",
+    "commit": "9963eea05a4682e423a8f0381ccab4e8b43a832a",
+    "genesisCount": 77,
+    "standardCount": 12,
+    "status": "retained original preview bytes; artwork previews are not minted inventory"
+  }
+}

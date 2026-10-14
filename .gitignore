@@ -1,0 +1,9 @@
+# Path budget: docs/PATH-BUDGET.md. Generated dependencies and caches have a zero-byte submission budget.
+**/node_modules/
+**/.vite/
+**/.cache/
+**/.npm/
+**/.pnpm-store/
+**/coverage/
+**/*.tsbuildinfo
+/test/scratch/

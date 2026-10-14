@@ -1,0 +1,103 @@
+{
+  "tool": "Slither",
+  "scope": "staking supplied repository source; implementing worker analysis, not independent audit",
+  "success": true,
+  "findings": [
+    {
+      "impact": "High",
+      "confidence": "Medium",
+      "check": "weak-prng",
+      "description": "BMCStaking._earned(uint256,uint256,uint256) (src/BMCStaking.sol#558-567) uses a weak PRNG: \"remainder %= SCALE (src/BMCStaking.sol#566)\" \n"
+    },
+    {
+      "impact": "High",
+      "confidence": "Medium",
+      "check": "incorrect-exp",
+      "description": "Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#123-202) has bitwise-xor operator ^ instead of the exponentiation operator **: \n\t - inverse = (3 * denominator) ^ 2 (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#184)\n"
+    },
+    {
+      "impact": "High",
+      "confidence": "Medium",
+      "check": "reentrancy-balance",
+      "description": "Reentrancy in BMCStaking._sendBMC(address,uint256,uint256) (src/BMCStaking.sol#595-611):\n\tExternal call allowing reentrancy:\n\t- BMC.safeTransfer(recipient,amount) (src/BMCStaking.sol#601)\n\tBalance read before the call:\n\t- beforeRecipient = BMC.balanceOf(recipient) (src/BMCStaking.sol#600)\n\tPossible stale balance used after the call in a condition:\n\t- afterBalance > beforeBalance || beforeBalance - afterBalance != amount || afterRecipient < beforeRecipient || afterRecipient - beforeRecipient > amount (src/BMCStaking.sol#605-606)\n\t\t- stale variable `beforeRecipient`\n\t- received < minReceived (src/BMCStaking.sol#610)\n\t\t- stale variable `received`\n"
+    },
+    {
+      "impact": "High",
+      "confidence": "Medium",
+      "check": "reentrancy-balance",
+      "description": "Reentrancy in BMCStaking._receiveBMC(uint256,uint256) (src/BMCStaking.sol#583-593):\n\tExternal call allowing reentrancy:\n\t- BMC.safeTransferFrom(msg.sender,address(this),amount) (src/BMCStaking.sol#586)\n\tBalance read before the call:\n\t- beforeBalance = BMC.balanceOf(address(this)) (src/BMCStaking.sol#585)\n\tPossible stale balance used after the call in a condition:\n\t- afterBalance <= beforeBalance || afterBalance - beforeBalance > amount (src/BMCStaking.sol#588)\n\t\t- stale variable `beforeBalance`\n\t- received < minReceived (src/BMCStaking.sol#592)\n\t\t- stale variable `received`\n"
+    },
+    {
+      "impact": "High",
+      "confidence": "Medium",
+      "check": "reentrancy-balance",
+      "description": "Reentrancy in BMCStaking._sendBMC(address,uint256,uint256) (src/BMCStaking.sol#595-611):\n\tExternal call allowing reentrancy:\n\t- BMC.safeTransfer(recipient,amount) (src/BMCStaking.sol#601)\n\tBalance read before the call:\n\t- beforeBalance = BMC.balanceOf(address(this)) (src/BMCStaking.sol#599)\n\tPossible stale balance used after the call in a condition:\n\t- afterBalance > beforeBalance || beforeBalance - afterBalance != amount || afterRecipient < beforeRecipient || afterRecipient - beforeRecipient > amount (src/BMCStaking.sol#605-606)\n\t\t- stale variable `beforeBalance`\n"
+    },
+    {
+      "impact": "High",
+      "confidence": "Medium",
+      "check": "reentrancy-eth",
+      "description": "Reentrancy in BMCStaking.fundRewards(uint256,uint256) (src/BMCStaking.sol#216-231):\n\tExternal calls:\n\t- received = _receiveBMC(amount,minReceived) (src/BMCStaking.sol#226)\n\t\t- returndata = address(token).functionCall(data) (lib/openzeppelin-contracts/contracts/token/ERC20/utils/SafeERC20.sol#98)\n\t\t- BMC.safeTransferFrom(msg.sender,address(this),amount) (src/BMCStaking.sol#586)\n\t\t- (success,returndata) = target.call{value: value}(data) (lib/openzeppelin-contracts/contracts/utils/Address.sol#90)\n\tExternal calls sending eth:\n\t- received = _receiveBMC(amount,minReceived) (src/BMCStaking.sol#226)\n\t\t- (success,returndata) = target.call{value: value}(data) (lib/openzeppelin-contracts/contracts/utils/Address.sol#90)\n\tState variables written after the call(s):\n\t- rewardReserve += received (src/BMCStaking.sol#229)\n\tBMCStaking.rewardReserve (src/BMCStaking.sol#75) can be used in cross function reentrancies:\n\t- BMCStaking.rewardReserve (src/BMCStaking.sol#75)\n"
+    },
+    {
+      "impact": "High",
+      "confidence": "Medium",
+      "check": "reentrancy-eth",
+      "description": "Reentrancy in BMCStaking.stakeBMC(uint256,uint256) (src/BMCStaking.sol#258-272):\n\tExternal calls:\n\t- received = _receiveBMC(amount,minReceived) (src/BMCStaking.sol#262)\n\t\t- returndata = address(token).functionCall(data) (lib/openzeppelin-contracts/contracts/token/ERC20/utils/SafeERC20.sol#98)\n\t\t- BMC.safeTransferFrom(msg.sender,address(this),amount) (src/BMCStaking.sol#586)\n\t\t- (success,returndata) = target.call{value: value}(data) (lib/openzeppelin-contracts/contracts/utils/Address.sol#90)\n\tExternal calls sending eth:\n\t- received = _receiveBMC(amount,minReceived) (src/BMCStaking.sol#262)\n\t\t- (success,returndata) = target.call{value: value}(data) (lib/openzeppelin-contracts/contracts/utils/Address.sol#90)\n\tState variables written after the call(s):\n\t- a.principal += received (src/BMCStaking.sol#265)\n\tBMCStaking.accounts (src/BMCStaking.sol#81) can be used in cross function reentrancies:\n\t- BMCStaking.accounts (src/BMCStaking.sol#81)\n\t- BMCStaking.pendingRewards(address) (src/BMCStaking.sol#397-410)\n\t- a.lastTokenDepositBlock = block.number (src/BMCStaking.sol#268)\n\tBMCStaking.accounts (src/BMCStaking.sol#81) can be used in cross function reentrancies:\n\t- BMCStaking.accounts (src/BMCStaking.sol#81)\n\t- BMCStaking.pendingRewards(address) (src/BMCStaking.sol#397-410)\n\t- a.lastStakeBlock = block.number (src/BMCStaking.sol#269)\n\tBMCStaking.accounts (src/BMCStaking.sol#81) can be used in cross function reentrancies:\n\t- BMCStaking.accounts (src/BMCStaking.sol#81)\n\t- BMCStaking.pendingRewards(address) (src/BMCStaking.sol#397-410)\n\t- _refreshBonus(msg.sender) (src/BMCStaking.sol#270)\n\t\t- a.bonusWeight = next (src/BMCStaking.sol#578)\n\tBMCStaking.accounts (src/BMCStaking.sol#81) can be used in cross function reentrancies:\n\t- BMCStaking.accounts (src/BMCStaking.sol#81)\n\t- BMCStaking.pendingRewards(address) (src/BMCStaking.sol#397-410)\n\t- pools[TOKEN_POOL].totalWeight += received (src/BMCStaking.sol#267)\n\tBMCStaking.pools (src/BMCStaking.sol#80) can be used in cross function reentrancies:\n\t- BMCStaking.pendingRewards(address) (src/BMCStaking.sol#397-410)\n\t- BMCStaking.poolInfo(uint256) (src/BMCStaking.sol#412-414)\n\t- BMCStaking.pools (src/BMCStaking.sol#80)\n\t- _refreshBonus(msg.sender) (src/BMCStaking.sol#270)\n\t\t- pools[BONUS_POOL].totalWeight = pools[BONUS_POOL].totalWeight - a.bonusWeight + next (src/BMCStaking.sol#577)\n\tBMCStaking.pools (src/BMCStaking.sol#80) can be used in cross function reentrancies:\n\t- BMCStaking.pendingRewards(address) (src/BMCStaking.sol#397-410)\n\t- BMCStaking.poolInfo(uint256) (src/BMCStaking.sol#412-414)\n\t- BMCStaking.pools (src/BMCStaking.sol#80)\n\t- totalPrincipal += received (src/BMCStaking.sol#266)\n\tBMCStaking.totalPrincipal (src/BMCStaking.sol#74) can be used in cross function reentrancies:\n\t- BMCStaking.totalPrincipal (src/BMCStaking.sol#74)\n"
+    },
+    {
+      "impact": "Medium",
+      "confidence": "Medium",
+      "check": "divide-before-multiply",
+      "description": "Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#123-202) performs a multiplication on the result of a division:\n\t- denominator = denominator / twos (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#169)\n\t- inverse *= 2 - denominator * inverse (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#190)\n"
+    },
+    {
+      "impact": "Medium",
+      "confidence": "Medium",
+      "check": "divide-before-multiply",
+      "description": "Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#123-202) performs a multiplication on the result of a division:\n\t- denominator = denominator / twos (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#169)\n\t- inverse *= 2 - denominator * inverse (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#193)\n"
+    },
+    {
+      "impact": "Medium",
+      "confidence": "Medium",
+      "check": "divide-before-multiply",
+      "description": "Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#123-202) performs a multiplication on the result of a division:\n\t- denominator = denominator / twos (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#169)\n\t- inverse *= 2 - denominator * inverse (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#188)\n"
+    },
+    {
+      "impact": "Medium",
+      "confidence": "Medium",
+      "check": "divide-before-multiply",
+      "description": "Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#123-202) performs a multiplication on the result of a division:\n\t- denominator = denominator / twos (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#169)\n\t- inverse = (3 * denominator) ^ 2 (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#184)\n"
+    },
+    {
+      "impact": "Medium",
+      "confidence": "Medium",
+      "check": "divide-before-multiply",
+      "description": "Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#123-202) performs a multiplication on the result of a division:\n\t- prod0 = prod0 / twos (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#172)\n\t- result = prod0 * inverse (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#199)\n"
+    },
+    {
+      "impact": "Medium",
+      "confidence": "Medium",
+      "check": "divide-before-multiply",
+      "description": "Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#123-202) performs a multiplication on the result of a division:\n\t- denominator = denominator / twos (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#169)\n\t- inverse *= 2 - denominator * inverse (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#192)\n"
+    },
+    {
+      "impact": "Medium",
+      "confidence": "Medium",
+      "check": "divide-before-multiply",
+      "description": "Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#123-202) performs a multiplication on the result of a division:\n\t- denominator = denominator / twos (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#169)\n\t- inverse *= 2 - denominator * inverse (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#191)\n"
+    },
+    {
+      "impact": "Medium",
+      "confidence": "Medium",
+      "check": "divide-before-multiply",
+      "description": "Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#123-202) performs a multiplication on the result of a division:\n\t- denominator = denominator / twos (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#169)\n\t- inverse *= 2 - denominator * inverse (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#189)\n"
+    },
+    {
+      "impact": "Medium",
+      "confidence": "Medium",
+      "check": "uninitialized-local",
+      "description": "BMCStaking.claim(uint256).amounts (src/BMCStaking.sol#333) is a local variable never initialized\n"
+    }
+  ]
+}

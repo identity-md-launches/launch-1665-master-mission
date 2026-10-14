@@ -1,0 +1,12 @@
+{
+  "sourceCommit": "9963eea05a4682e423a8f0381ccab4e8b43a832a",
+  "compiler": "0.8.26",
+  "evm": "cancun",
+  "optimizerRuns": 200,
+  "executableBytes": 21446,
+  "executableMatches": true,
+  "executableSha256": "c3cb984f8d613d3e3f851c170e07816ef8b370bab2b91262851f7cba2c3e7f86",
+  "onchainRuntimeSha256": "b380ee53e2d9b7b5b4238f308f9b8b792dafdb620f8cbe47a50c1e871359a20a",
+  "compiledRuntimeSha256": "64503241c35f6ad4f325d43a73bd7af53f1063222dc15a7244b5b952f56c3673",
+  "metadataOnlyDifference": true
+}

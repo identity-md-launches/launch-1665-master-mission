@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "files": 252,
+  "bytes": 8185785,
+  "cap": 8388608,
+  "spare": 202823,
+  "matchingPublicAssets": 92,
+  "byRoot": {
+    ".gitignore": 214,
+    "DESIGN.md": 6351,
+    "README.md": 6797,
+    "REVIEW.md": 8294,
+    "dist": 4326035,
+    "docs": 255656,
+    "web": 3582438
+  },
+  "measuredAt": "2026-10-14",
+  "scope": "Source and export files; excludes Git internals, removed task inputs, generated dependencies/caches and test/scratch"
+}

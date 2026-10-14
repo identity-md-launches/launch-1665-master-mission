@@ -1,0 +1,99 @@
+{
+  "base": "temporary /preview/ subpath",
+  "results": [
+    {
+      "test": "Product and primary action visible at 390",
+      "passed": true
+    },
+    {
+      "test": "Wallet modal opens, Escape closes and focus restores",
+      "passed": true
+    },
+    {
+      "test": "Mint phase controls work and PRE_LAUNCH blocks all financial controls",
+      "passed": true
+    },
+    {
+      "test": "Static /mint/ entry resolves relative assets under a subpath",
+      "passed": true
+    },
+    {
+      "test": "Authentic NFT image, attributes, owner and validated lookup",
+      "passed": true
+    },
+    {
+      "test": "Staking programs explain unavailable deployment and cannot transact",
+      "passed": true
+    },
+    {
+      "test": "Launchpad HTTPS validation, local draft download and creator preview",
+      "passed": true
+    },
+    {
+      "test": "Live buy quote, minimum received and fee disclosure",
+      "passed": true
+    },
+    {
+      "test": "All routes reflow at 320px",
+      "passed": true
+    },
+    {
+      "test": "All routes reflow at 390px",
+      "passed": true
+    },
+    {
+      "test": "All routes reflow at 768px",
+      "passed": true
+    },
+    {
+      "test": "All routes reflow at 1440px",
+      "passed": true
+    },
+    {
+      "test": "No page errors or missing local resources during primary flow",
+      "passed": true
+    },
+    {
+      "test": "Named EIP-6963 discovery, rejection recovery, wallet connection and NFT discovery",
+      "passed": true
+    },
+    {
+      "test": "Known Genesis receipt recovers with sender/calldata, confirmations and minted token ID verified",
+      "passed": true
+    },
+    {
+      "test": "Unknown transaction request requires explicit verification acknowledgment before clearing",
+      "passed": true
+    },
+    {
+      "test": "Wrong network state and explicit Ethereum switch",
+      "passed": true
+    },
+    {
+      "test": "Account changes clear previous wallet NFTs",
+      "passed": true
+    },
+    {
+      "test": "No financial or signature requests during connect, network and read interactions",
+      "passed": true,
+      "walletMethods": [
+        "eth_accounts",
+        "wallet_requestPermissions",
+        "eth_requestAccounts",
+        "eth_chainId",
+        "wallet_switchEthereumChain"
+      ]
+    },
+    {
+      "test": "Phone wallet links and Coinbase Smart Wallet row",
+      "passed": true
+    },
+    {
+      "test": "WebKit primary navigation and connect dialog",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "recordedAt": "2026-10-14",
+  "authority": "Implementing worker checks only; not independent certification"
+}

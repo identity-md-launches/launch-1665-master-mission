@@ -1,0 +1,26 @@
+{
+  "block": "26187123",
+  "timestamp": 1791937307,
+  "quoter": "0x52f0e24d1c21c8a0cb1e5a5dd6198556bd9e1203",
+  "results": [
+    {
+      "buy": true,
+      "input": "1000000000000000",
+      "output": "79566161536468751369933",
+      "gasEstimate": "88967",
+      "ok": true
+    },
+    {
+      "buy": false,
+      "input": "1000000000000000000000",
+      "output": "12010806347322",
+      "gasEstimate": "97706",
+      "ok": true
+    }
+  ],
+  "fees": {
+    "buyFeeBps": "100",
+    "sellBurnBps": "100",
+    "feeRecipient": "0x83027AD9d0D5374335086c539dADD1db983441B0"
+  }
+}

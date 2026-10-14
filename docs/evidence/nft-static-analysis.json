@@ -1,0 +1,109 @@
+{
+  "tool": "Slither",
+  "scope": "nft supplied repository source; implementing worker analysis, not independent audit",
+  "success": true,
+  "findings": [
+    {
+      "impact": "High",
+      "confidence": "Medium",
+      "check": "weak-prng",
+      "description": "BMCIlluminatiPass._draw(uint256,uint256,bool) (src/BMCIlluminatiPass.sol#251-255) uses a weak PRNG: \"r = uint256(keccak256(bytes)(abi.encode(word,tokenId))) % remaining (src/BMCIlluminatiPass.sol#253)\" \n"
+    },
+    {
+      "impact": "High",
+      "confidence": "Medium",
+      "check": "incorrect-exp",
+      "description": "Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#144-223) has bitwise-xor operator ^ instead of the exponentiation operator **: \n\t - inverse = (3 * denominator) ^ 2 (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#205)\n"
+    },
+    {
+      "impact": "High",
+      "confidence": "Medium",
+      "check": "reentrancy-balance",
+      "description": "Reentrancy in BMCIlluminatiPass._burnExact(address,uint256) (src/BMCIlluminatiPass.sol#236-248):\n\tExternal call allowing reentrancy:\n\t- BMC.burnFrom(payer,amount) (src/BMCIlluminatiPass.sol#242)\n\tBalance read before the call:\n\t- balanceBefore = BMC.balanceOf(payer) (src/BMCIlluminatiPass.sol#241)\n\tPossible stale balance used after the call in a condition:\n\t- supplyDelta != amount || balanceDelta != amount (src/BMCIlluminatiPass.sol#245)\n\t\t- stale variable `balanceDelta`\n"
+    },
+    {
+      "impact": "Medium",
+      "confidence": "Medium",
+      "check": "divide-before-multiply",
+      "description": "Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#144-223) performs a multiplication on the result of a division:\n\t- denominator = denominator / twos (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#190)\n\t- inverse *= 2 - denominator * inverse (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#212)\n"
+    },
+    {
+      "impact": "Medium",
+      "confidence": "Medium",
+      "check": "divide-before-multiply",
+      "description": "Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#144-223) performs a multiplication on the result of a division:\n\t- denominator = denominator / twos (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#190)\n\t- inverse = (3 * denominator) ^ 2 (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#205)\n"
+    },
+    {
+      "impact": "Medium",
+      "confidence": "Medium",
+      "check": "divide-before-multiply",
+      "description": "Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#144-223) performs a multiplication on the result of a division:\n\t- prod0 = prod0 / twos (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#193)\n\t- result = prod0 * inverse (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#220)\n"
+    },
+    {
+      "impact": "Medium",
+      "confidence": "Medium",
+      "check": "divide-before-multiply",
+      "description": "Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#144-223) performs a multiplication on the result of a division:\n\t- denominator = denominator / twos (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#190)\n\t- inverse *= 2 - denominator * inverse (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#209)\n"
+    },
+    {
+      "impact": "Medium",
+      "confidence": "Medium",
+      "check": "divide-before-multiply",
+      "description": "Base64._encode(bytes,string,bool) (lib/openzeppelin-contracts/contracts/utils/Base64.sol#35-122) performs a multiplication on the result of a division:\n\t- resultLength = 4 * ((data.length + 2) / 3) (lib/openzeppelin-contracts/contracts/utils/Base64.sol#55)\n"
+    },
+    {
+      "impact": "Medium",
+      "confidence": "Medium",
+      "check": "divide-before-multiply",
+      "description": "Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#144-223) performs a multiplication on the result of a division:\n\t- denominator = denominator / twos (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#190)\n\t- inverse *= 2 - denominator * inverse (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#210)\n"
+    },
+    {
+      "impact": "Medium",
+      "confidence": "Medium",
+      "check": "divide-before-multiply",
+      "description": "Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#144-223) performs a multiplication on the result of a division:\n\t- denominator = denominator / twos (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#190)\n\t- inverse *= 2 - denominator * inverse (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#214)\n"
+    },
+    {
+      "impact": "Medium",
+      "confidence": "Medium",
+      "check": "divide-before-multiply",
+      "description": "Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#144-223) performs a multiplication on the result of a division:\n\t- denominator = denominator / twos (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#190)\n\t- inverse *= 2 - denominator * inverse (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#211)\n"
+    },
+    {
+      "impact": "Medium",
+      "confidence": "Medium",
+      "check": "divide-before-multiply",
+      "description": "Math.invMod(uint256,uint256) (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#243-289) performs a multiplication on the result of a division:\n\t- quotient = gcd / remainder (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#265)\n\t- (gcd,remainder) = (remainder,gcd - remainder * quotient) (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#267-274)\n"
+    },
+    {
+      "impact": "Medium",
+      "confidence": "Medium",
+      "check": "divide-before-multiply",
+      "description": "Math.mulDiv(uint256,uint256,uint256) (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#144-223) performs a multiplication on the result of a division:\n\t- denominator = denominator / twos (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#190)\n\t- inverse *= 2 - denominator * inverse (lib/openzeppelin-contracts/contracts/utils/math/Math.sol#213)\n"
+    },
+    {
+      "impact": "Medium",
+      "confidence": "High",
+      "check": "incorrect-equality",
+      "description": "BMCIlluminatiPass.reveal(uint256) (src/BMCIlluminatiPass.sol#205-221) uses a dangerous strict equality:\n\t- hash == bytes32(0) (src/BMCIlluminatiPass.sol#212)\n"
+    },
+    {
+      "impact": "Medium",
+      "confidence": "High",
+      "check": "incorrect-equality",
+      "description": "BMCIlluminatiPass._slotValue(uint256) (src/BMCIlluminatiPass.sol#296-299) uses a dangerous strict equality:\n\t- s == 0 (src/BMCIlluminatiPass.sol#298)\n"
+    },
+    {
+      "impact": "Medium",
+      "confidence": "Medium",
+      "check": "reentrancy-no-eth",
+      "description": "Reentrancy in BMCIlluminatiPass.mintGenesis() (src/BMCIlluminatiPass.sol#169-183):\n\tExternal calls:\n\t- _burnExact(msg.sender,GENESIS_PRICE) (src/BMCIlluminatiPass.sol#173)\n\t\t- BMC.burnFrom(payer,amount) (src/BMCIlluminatiPass.sol#242)\n\tState variables written after the call(s):\n\t- tokenId = ++ totalMinted (src/BMCIlluminatiPass.sol#175)\n\tBMCIlluminatiPass.totalMinted (src/BMCIlluminatiPass.sol#96) can be used in cross function reentrancies:\n\t- BMCIlluminatiPass._requireMinted(uint256) (src/BMCIlluminatiPass.sol#379-381)\n\t- BMCIlluminatiPass.currentPrice() (src/BMCIlluminatiPass.sol#374-377)\n\t- BMCIlluminatiPass.genesisPhaseActive() (src/BMCIlluminatiPass.sol#350-352)\n\t- BMCIlluminatiPass.nextRevealId() (src/BMCIlluminatiPass.sol#337-340)\n\t- BMCIlluminatiPass.pendingReveals() (src/BMCIlluminatiPass.sol#360-362)\n\t- BMCIlluminatiPass.remainingMysteryMints() (src/BMCIlluminatiPass.sol#355-357)\n\t- BMCIlluminatiPass.remainingSupply() (src/BMCIlluminatiPass.sol#346-348)\n\t- BMCIlluminatiPass.reveal(uint256) (src/BMCIlluminatiPass.sol#205-221)\n\t- BMCIlluminatiPass.totalMinted (src/BMCIlluminatiPass.sol#96)\n\t- BMCIlluminatiPass.totalSupply() (src/BMCIlluminatiPass.sol#342-344)\n"
+    },
+    {
+      "impact": "Medium",
+      "confidence": "Medium",
+      "check": "reentrancy-no-eth",
+      "description": "Reentrancy in BMCIlluminatiPass.mintMystery() (src/BMCIlluminatiPass.sol#189-199):\n\tExternal calls:\n\t- _burnExact(msg.sender,MYSTERY_PRICE) (src/BMCIlluminatiPass.sol#194)\n\t\t- BMC.burnFrom(payer,amount) (src/BMCIlluminatiPass.sol#242)\n\tState variables written after the call(s):\n\t- tokenId = ++ totalMinted (src/BMCIlluminatiPass.sol#195)\n\tBMCIlluminatiPass.totalMinted (src/BMCIlluminatiPass.sol#96) can be used in cross function reentrancies:\n\t- BMCIlluminatiPass._requireMinted(uint256) (src/BMCIlluminatiPass.sol#379-381)\n\t- BMCIlluminatiPass.currentPrice() (src/BMCIlluminatiPass.sol#374-377)\n\t- BMCIlluminatiPass.genesisPhaseActive() (src/BMCIlluminatiPass.sol#350-352)\n\t- BMCIlluminatiPass.nextRevealId() (src/BMCIlluminatiPass.sol#337-340)\n\t- BMCIlluminatiPass.pendingReveals() (src/BMCIlluminatiPass.sol#360-362)\n\t- BMCIlluminatiPass.remainingMysteryMints() (src/BMCIlluminatiPass.sol#355-357)\n\t- BMCIlluminatiPass.remainingSupply() (src/BMCIlluminatiPass.sol#346-348)\n\t- BMCIlluminatiPass.reveal(uint256) (src/BMCIlluminatiPass.sol#205-221)\n\t- BMCIlluminatiPass.totalMinted (src/BMCIlluminatiPass.sol#96)\n\t- BMCIlluminatiPass.totalSupply() (src/BMCIlluminatiPass.sol#342-344)\n"
+    }
+  ]
+}

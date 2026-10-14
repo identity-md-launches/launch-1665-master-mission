@@ -1,0 +1,19 @@
+{
+  "chainId": 1,
+  "address": "0x92789d9bb680a2db8617270a530e9d0f80b48641",
+  "firstCodeBlock": "26186157",
+  "ownershipEvents": [
+    {
+      "previousOwner": "0x0000000000000000000000000000000000000000",
+      "newOwner": "0x83027AD9d0D5374335086c539dADD1db983441B0",
+      "hash": "0xc3fbf78db4416092af78a0646e0e9d3a6e0f8bfe51698cbe4ceacdd23de3e936"
+    }
+  ],
+  "creationTransaction": {
+    "hash": "0xc3fbf78db4416092af78a0646e0e9d3a6e0f8bfe51698cbe4ceacdd23de3e936",
+    "from": "0x83027ad9d0d5374335086c539dadd1db983441b0",
+    "to": null,
+    "blockNumber": "26186157"
+  },
+  "note": "Ownership and transaction origin are recorded separately; the founder need not be the factory caller."
+}
